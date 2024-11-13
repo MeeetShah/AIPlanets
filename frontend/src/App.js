@@ -8,7 +8,7 @@ import QuestionForm from './components/QuestionForm';
 function App() {
   return (
     <div>
-      <h1>PDF Upload and Question Answering</h1>
+      
       <PdfUpload />
       <PdfList />
       <QuestionForm/>

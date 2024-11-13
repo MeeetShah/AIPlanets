@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './AskQuestionStyles.css';
 
 const QuestionForm = () => {
   const [pdfs, setPdfs] = useState([]);
@@ -45,52 +46,57 @@ const QuestionForm = () => {
   };
 
   return (
-    <div>
-      <h2>Ask a Question</h2>
+    <div className="ask-question-container">
+    <h2 className="ask-question-heading">Ask a Question</h2>
 
-      {/* Error message */}
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+    {/* Error message */}
+    {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <form onSubmit={handleQuestionSubmit}>
-        {/* Select PDF */}
-        <div>
-          <label htmlFor="pdf-select">Select a PDF:</label>
-          <select
-            id="pdf-select"
-            value={selectedPdf}
-            onChange={(e) => setSelectedPdf(e.target.value)}
-          >
-            <option value="">Select PDF</option>
-            {pdfs.map((pdf, index) => (
-              <option key={index} value={pdf}>
-                {pdf}
-              </option>
-            ))}
-          </select>
-        </div>
+    <form onSubmit={handleQuestionSubmit} className="ask-question-form">
+      {/* Select PDF */}
+      <div className="form-group">
+        <label htmlFor="pdf-select">Select a PDF:</label>
+        <select
+          id="pdf-select"
+          value={selectedPdf}
+          onChange={(e) => setSelectedPdf(e.target.value)}
+          className="form-input"
+        >
+          <option value="">Select PDF</option>
+          {pdfs.map((pdf, index) => (
+            <option key={index} value={pdf}>
+              {pdf}
+            </option>
+          ))}
+        </select>
+      </div>
 
-        {/* Question input */}
-        <div>
-          <label htmlFor="question-input">Your Question:</label>
-          <input
-            type="text"
-            id="question-input"
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-          />
-        </div>
+      {/* Question input */}
+      <div className="form-group">
+        <label htmlFor="question-input">Your Question:</label>
+        <input
+          type="text"
+          id="question-input"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          className="form-input"
+          placeholder="Type your question here..."
+        />
+      </div>
 
-        <button type="submit">Ask Question</button>
-      </form>
+      <button type="submit" className="submit-button">
+        Ask Question
+      </button>
+    </form>
 
-      {/* Display answer */}
-      {answer && (
-        <div>
-          <h3>Answer:</h3>
-          <p>{answer}</p>
-        </div>
-      )}
-    </div>
+    {/* Display answer */}
+    {answer && (
+      <div className="answer-container">
+        <h3>Answer:</h3>
+        <p>{answer}</p>
+      </div>
+    )}
+  </div>
   );
 };
 

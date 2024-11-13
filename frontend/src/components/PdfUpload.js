@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import './UploadStyles.css'; 
 
 const PdfUpload = () => {
   const [file, setFile] = useState(null);
@@ -32,12 +33,25 @@ const PdfUpload = () => {
   };
 
   return (
-    <div>
-      <h2>Upload PDF</h2>
-      <input type="file" accept="application/pdf" onChange={handleFileChange} />
-      <button onClick={handleFileUpload}>Upload</button>
-      {uploadStatus && <p>{uploadStatus}</p>}
+    <div className="upload-container">
+      <h1>PDF Upload and Question Answering</h1>
+    <h2 className="upload-heading">Upload Your PDF</h2>
+    <div className="file-input-container">
+      <input 
+        type="file" 
+        accept="application/pdf" 
+        onChange={handleFileChange} 
+        className="file-input" 
+      />
+      <button 
+        onClick={handleFileUpload} 
+        className="upload-button"
+      >
+        Upload
+      </button>
     </div>
+    {uploadStatus && <p className="status-message">{uploadStatus}</p>}
+  </div>
   );
 };
 
